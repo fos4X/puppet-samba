@@ -1,9 +1,11 @@
 # == Define samba::server::option
 #
-define samba::server::option ( $value = '' ) {
+define samba::server::option (
+  $value = '',
+  $target = $samba::server::target,
+) {
   $incl    = $samba::server::incl
   $context = $samba::server::context
-  $target  = $samba::server::target
 
   $changes = $value ? {
     ''      => "rm ${target}/${name}",
