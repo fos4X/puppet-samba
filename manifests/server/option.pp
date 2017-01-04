@@ -1,6 +1,7 @@
 # == Define samba::server::option
 #
 define samba::server::option (
+  $key = $name,
   $value = '',
   $target = $samba::server::target,
 ) {
@@ -8,8 +9,8 @@ define samba::server::option (
   $context = $samba::server::context
 
   $changes = $value ? {
-    ''      => "rm ${target}/${name}",
-    default => "set \"${target}/${name}\" \"${value}\"",
+    ''      => "rm ${target}/${key}",
+    default => "set \"${target}/${key}\" \"${value}\"",
   }
 
   augeas { "samba-${name}":
